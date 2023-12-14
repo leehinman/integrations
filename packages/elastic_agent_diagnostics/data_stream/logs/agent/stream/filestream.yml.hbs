@@ -1,0 +1,10 @@
+paths:
+{{#each paths as |path i|}}
+  - {{path}}
+{{/each}}
+parsers:
+- ndjson:
+    expand_keys: true
+    overwrite_keys: true
+    add_error_key: true
+publisher_pipeline.disable_host: true

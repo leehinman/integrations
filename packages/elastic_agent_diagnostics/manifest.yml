@@ -1,0 +1,38 @@
+format_version: 3.0.3
+name: elastic_agent_diagnostics
+title: "Elastic Agent Diagnostics"
+version: 0.0.1
+source:
+  license: "Elastic-2.0"
+description: "For visualizing elastic-agent diagnostic output"
+type: integration
+categories:
+  - custom
+  - elastic_stack
+  - support
+conditions:
+  kibana:
+    version: "^8.10.1"
+  elastic:
+    subscription: "basic"
+screenshots:
+  - src: /img/sample-screenshot.png
+    title: Sample screenshot
+    size: 600x600
+    type: image/png
+icons:
+  - src: /img/sample-logo.svg
+    title: Sample logo
+    size: 32x32
+    type: image/svg+xml
+policy_templates:
+  - name: elastic_agent_diagnostic
+    title: Visualize elastic-agent diagnostic logs
+    description: Collect elastic-agent diagnostic logs
+    inputs:
+      - type: filestream
+        title: Collect elastic-agent diagnostic logs
+        description: Collecting elastic-agent diagnostic logs
+owner:
+  github: elastic/elastic-agent-data-plane
+  type: elastic

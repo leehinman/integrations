@@ -1,0 +1,54 @@
+- name: monitoring.metrics.libbeat.output
+  description: Output stats
+  type: group
+  fields:
+    - name: batches
+      type: group
+      description: Batches stats
+      fields:
+        - name: split
+          type: long
+          description: Number of batches split because they were too large
+    - name: events
+      type: group
+      description: Event counters
+      fields:
+        - name: acked
+          type: long
+          description: Number of events acknowledged
+        - name: batches
+          type: long
+          description: Number of batches sent
+        - name: dropped
+          type: long
+          description: Number of dropped events
+        - name: failed
+          type: long
+          description: Number of failed events
+        - name: toomany
+          type: long
+          description: Number of too many events
+        - name: total
+          type: long
+          description: Total number of events
+    - name: write
+      type: group
+      description: Write stats
+      fields:
+        - name: bytes
+          type: long
+          description: Number of bytes written
+        - name: errors
+          type: long
+          description: Number of write errors
+- name: monitoring.metrics.libbeat.pipeline
+  description: Pipeline stats
+  type: group
+  fields:
+    - name: events
+      type: group
+      description: Event stats
+      fields:
+        - name: active
+          type: long
+          description: Number of events active in pipeline

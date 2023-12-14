@@ -1,0 +1,15 @@
+title: "elastics-agent diagnostic logs"
+type: logs
+streams:
+  - input: filestream
+    template_path: filestream.yml.hbs
+    title: elastic-agent diagnostic logs
+    description: Collect elastic-agent diagnostic logs
+    vars:
+      - name: paths
+        type: text
+        title: Paths
+        multi: true
+        show_user: true
+        default:
+          - /extract_dir/*/logs/*.ndjson

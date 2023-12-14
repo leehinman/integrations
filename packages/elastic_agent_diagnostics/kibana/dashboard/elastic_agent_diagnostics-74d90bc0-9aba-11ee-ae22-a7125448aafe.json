@@ -1,0 +1,1537 @@
+{
+    "attributes": {
+        "controlGroupInput": {
+            "chainingSystem": "HIERARCHICAL",
+            "controlStyle": "oneLine",
+            "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}",
+            "panelsJSON": "{\"c31d8784-d67b-4334-a65c-b1807c68355d\":{\"type\":\"optionsListControl\",\"order\":0,\"grow\":true,\"width\":\"medium\",\"explicitInput\":{\"id\":\"c31d8784-d67b-4334-a65c-b1807c68355d\",\"fieldName\":\"component.id\",\"title\":\"component.id\",\"grow\":true,\"width\":\"medium\",\"singleSelect\":true,\"selectedOptions\":[],\"enhancements\":{}}}}"
+        },
+        "description": "Visualization of 30s metrics in the `elastic-agent diagnostics` output",
+        "kibanaSavedObjectMeta": {
+            "searchSourceJSON": {
+                "filter": [],
+                "query": {
+                    "language": "kuery",
+                    "query": ""
+                }
+            }
+        },
+        "optionsJSON": {
+            "hidePanelTitles": false,
+            "syncColors": false,
+            "syncCursor": true,
+            "syncTooltips": false,
+            "useMargins": true
+        },
+        "panelsJSON": [
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-79a6109f-4716-4d49-b124-71409206a385",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "030ad0b2-8e0f-430e-8238-5d3794842d6c",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "79a6109f-4716-4d49-b124-71409206a385": {
+                                            "columnOrder": [
+                                                "33b2c28e-bccc-4fb2-b138-42bb684c0576",
+                                                "1e53241c-c20f-4430-b1fb-85a9ec19b4d3",
+                                                "444f672f-6825-41a2-bb0d-6c3367d750e7"
+                                            ],
+                                            "columns": {
+                                                "1e53241c-c20f-4430-b1fb-85a9ec19b4d3": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                },
+                                                "33b2c28e-bccc-4fb2-b138-42bb684c0576": {
+                                                    "dataType": "string",
+                                                    "isBucketed": true,
+                                                    "label": "Top 10 values of component.id",
+                                                    "operationType": "terms",
+                                                    "params": {
+                                                        "exclude": [],
+                                                        "excludeIsRegex": false,
+                                                        "include": [],
+                                                        "includeIsRegex": false,
+                                                        "missingBucket": false,
+                                                        "orderBy": {
+                                                            "columnId": "444f672f-6825-41a2-bb0d-6c3367d750e7",
+                                                            "type": "column"
+                                                        },
+                                                        "orderDirection": "desc",
+                                                        "otherBucket": true,
+                                                        "parentFormat": {
+                                                            "id": "terms"
+                                                        },
+                                                        "size": 10
+                                                    },
+                                                    "scale": "ordinal",
+                                                    "sourceField": "component.id"
+                                                },
+                                                "444f672f-6825-41a2-bb0d-6c3367d750e7": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Events rate/s",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.total",
+                                                    "timeScale": "s"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "030ad0b2-8e0f-430e-8238-5d3794842d6c",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "444f672f-6825-41a2-bb0d-6c3367d750e7"
+                                        ],
+                                        "layerId": "79a6109f-4716-4d49-b124-71409206a385",
+                                        "layerType": "data",
+                                        "position": "top",
+                                        "seriesType": "line",
+                                        "showGridlines": false,
+                                        "splitAccessor": "33b2c28e-bccc-4fb2-b138-42bb684c0576",
+                                        "xAccessor": "1e53241c-c20f-4430-b1fb-85a9ec19b4d3",
+                                        "yConfig": [
+                                            {
+                                                "forAccessor": "444f672f-6825-41a2-bb0d-6c3367d750e7"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "line",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "d3c3c464-a1bb-46a2-8294-61ecec9b1a41",
+                    "w": 24,
+                    "x": 0,
+                    "y": 0
+                },
+                "panelIndex": "d3c3c464-a1bb-46a2-8294-61ecec9b1a41",
+                "title": "[Elastic Agent Diagnostics] Total Events rate/s",
+                "type": "lens"
+            },
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-ee8da478-9f7a-41b1-838b-362ce241ff08",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "7d8ea7e4-9fd1-4171-8907-7fc07b411c2c",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "ee8da478-9f7a-41b1-838b-362ce241ff08": {
+                                            "columnOrder": [
+                                                "563f4d06-5973-4ee1-bc1c-36682002218b",
+                                                "75ed667b-04d0-41b3-b6d9-93c90e667e8c",
+                                                "f777c37f-990d-420e-a959-986feab0208d"
+                                            ],
+                                            "columns": {
+                                                "563f4d06-5973-4ee1-bc1c-36682002218b": {
+                                                    "dataType": "string",
+                                                    "isBucketed": true,
+                                                    "label": "Top 10 values of component.id",
+                                                    "operationType": "terms",
+                                                    "params": {
+                                                        "exclude": [],
+                                                        "excludeIsRegex": false,
+                                                        "include": [],
+                                                        "includeIsRegex": false,
+                                                        "missingBucket": false,
+                                                        "orderBy": {
+                                                            "columnId": "f777c37f-990d-420e-a959-986feab0208d",
+                                                            "type": "column"
+                                                        },
+                                                        "orderDirection": "desc",
+                                                        "otherBucket": true,
+                                                        "parentFormat": {
+                                                            "id": "terms"
+                                                        },
+                                                        "size": 10
+                                                    },
+                                                    "scale": "ordinal",
+                                                    "sourceField": "component.id"
+                                                },
+                                                "75ed667b-04d0-41b3-b6d9-93c90e667e8c": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                },
+                                                "f777c37f-990d-420e-a959-986feab0208d": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Bytes sent/s",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.write.bytes",
+                                                    "timeScale": "s"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "7d8ea7e4-9fd1-4171-8907-7fc07b411c2c",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "f777c37f-990d-420e-a959-986feab0208d"
+                                        ],
+                                        "layerId": "ee8da478-9f7a-41b1-838b-362ce241ff08",
+                                        "layerType": "data",
+                                        "position": "top",
+                                        "seriesType": "line",
+                                        "showGridlines": false,
+                                        "splitAccessor": "563f4d06-5973-4ee1-bc1c-36682002218b",
+                                        "xAccessor": "75ed667b-04d0-41b3-b6d9-93c90e667e8c"
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "line",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "5a24190f-87ea-48d3-9f5a-02f16bafcdc5",
+                    "w": 24,
+                    "x": 24,
+                    "y": 0
+                },
+                "panelIndex": "5a24190f-87ea-48d3-9f5a-02f16bafcdc5",
+                "title": "[Elastic Agent Diagnostics] Output write throughput",
+                "type": "lens"
+            },
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-3bc7ca18-4add-4770-ab75-2c69aa7db11f",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "f7c8bd22-b2d1-4135-89fd-395a8ba1433c",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "3bc7ca18-4add-4770-ab75-2c69aa7db11f": {
+                                            "columnOrder": [
+                                                "15ce09e6-9543-49a0-bdf5-85fae8fb5fbf",
+                                                "759277da-124f-45c1-b441-d0b7b75ca234",
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X1",
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X0",
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X2"
+                                            ],
+                                            "columns": {
+                                                "15ce09e6-9543-49a0-bdf5-85fae8fb5fbf": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                },
+                                                "759277da-124f-45c1-b441-d0b7b75ca234": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "(total - acked) events/sec",
+                                                    "operationType": "formula",
+                                                    "params": {
+                                                        "formula": "subtract(sum(monitoring.metrics.libbeat.output.events.total), sum(monitoring.metrics.libbeat.output.events.acked))\n",
+                                                        "isFormulaBroken": false
+                                                    },
+                                                    "references": [
+                                                        "759277da-124f-45c1-b441-d0b7b75ca234X2"
+                                                    ],
+                                                    "scale": "ratio",
+                                                    "timeScale": "s"
+                                                },
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X0": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of events/sec",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": false
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.total"
+                                                },
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X1": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of events/sec",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": false
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.acked"
+                                                },
+                                                "759277da-124f-45c1-b441-d0b7b75ca234X2": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of events/sec",
+                                                    "operationType": "math",
+                                                    "params": {
+                                                        "tinymathAst": {
+                                                            "args": [
+                                                                "759277da-124f-45c1-b441-d0b7b75ca234X0",
+                                                                "759277da-124f-45c1-b441-d0b7b75ca234X1"
+                                                            ],
+                                                            "location": {
+                                                                "max": 115,
+                                                                "min": 0
+                                                            },
+                                                            "name": "subtract",
+                                                            "text": "subtract(sum(monitoring.metrics.libbeat.output.events.total), sum(monitoring.metrics.libbeat.output.events.acked))\n",
+                                                            "type": "function"
+                                                        }
+                                                    },
+                                                    "references": [
+                                                        "759277da-124f-45c1-b441-d0b7b75ca234X0",
+                                                        "759277da-124f-45c1-b441-d0b7b75ca234X1"
+                                                    ],
+                                                    "scale": "ratio"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "f7c8bd22-b2d1-4135-89fd-395a8ba1433c",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "759277da-124f-45c1-b441-d0b7b75ca234"
+                                        ],
+                                        "layerId": "3bc7ca18-4add-4770-ab75-2c69aa7db11f",
+                                        "layerType": "data",
+                                        "position": "top",
+                                        "seriesType": "line",
+                                        "showGridlines": false,
+                                        "xAccessor": "15ce09e6-9543-49a0-bdf5-85fae8fb5fbf",
+                                        "yConfig": [
+                                            {
+                                                "forAccessor": "759277da-124f-45c1-b441-d0b7b75ca234"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "line",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "description": "Should be near 0, large positive numbers mean the output is not reliably receiving all events sent to it",
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "9ded9fb5-f300-4b51-9b7c-34df9df56108",
+                    "w": 24,
+                    "x": 0,
+                    "y": 30
+                },
+                "panelIndex": "9ded9fb5-f300-4b51-9b7c-34df9df56108",
+                "title": "[Elastic Agent Diagnostics] Total - Acked",
+                "type": "lens"
+            },
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-8331934b-8ebe-415f-b194-60c8fd6e6b5e",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "bfbeb497-1d2b-4368-9c59-e190f1aee4ce",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "8331934b-8ebe-415f-b194-60c8fd6e6b5e": {
+                                            "columnOrder": [
+                                                "7925e964-8734-4b90-8f7b-36ca3f8a75bc",
+                                                "a6d46930-6fca-4688-a3db-3b0ad1f1c89e",
+                                                "a776e2ab-2f8c-4fc1-ab00-ee1bfe46759c",
+                                                "6227a9b8-0856-442f-9512-dfd7c4f2d6a7",
+                                                "60e78fbb-848f-442c-8acb-f129f477e66a",
+                                                "eeebdfaf-9a70-4d4b-8780-cd4733692ba3"
+                                            ],
+                                            "columns": {
+                                                "60e78fbb-848f-442c-8acb-f129f477e66a": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "write.errors",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.write.errors"
+                                                },
+                                                "6227a9b8-0856-442f-9512-dfd7c4f2d6a7": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "events.toomany",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.toomany"
+                                                },
+                                                "7925e964-8734-4b90-8f7b-36ca3f8a75bc": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                },
+                                                "a6d46930-6fca-4688-a3db-3b0ad1f1c89e": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "events.dropped",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.dropped"
+                                                },
+                                                "a776e2ab-2f8c-4fc1-ab00-ee1bfe46759c": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "events.failed",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.failed"
+                                                },
+                                                "eeebdfaf-9a70-4d4b-8780-cd4733692ba3": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "batches.split",
+                                                    "operationType": "median",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.batches.split"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "bfbeb497-1d2b-4368-9c59-e190f1aee4ce",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "a6d46930-6fca-4688-a3db-3b0ad1f1c89e",
+                                            "6227a9b8-0856-442f-9512-dfd7c4f2d6a7",
+                                            "60e78fbb-848f-442c-8acb-f129f477e66a",
+                                            "a776e2ab-2f8c-4fc1-ab00-ee1bfe46759c",
+                                            "eeebdfaf-9a70-4d4b-8780-cd4733692ba3"
+                                        ],
+                                        "layerId": "8331934b-8ebe-415f-b194-60c8fd6e6b5e",
+                                        "layerType": "data",
+                                        "seriesType": "bar_stacked",
+                                        "xAccessor": "7925e964-8734-4b90-8f7b-36ca3f8a75bc",
+                                        "yConfig": [
+                                            {
+                                                "forAccessor": "a776e2ab-2f8c-4fc1-ab00-ee1bfe46759c"
+                                            },
+                                            {
+                                                "forAccessor": "60e78fbb-848f-442c-8acb-f129f477e66a"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "bar_stacked",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "37050889-eff3-4490-9b0e-f647dadaea1c",
+                    "w": 24,
+                    "x": 0,
+                    "y": 15
+                },
+                "panelIndex": "37050889-eff3-4490-9b0e-f647dadaea1c",
+                "title": "[Elastic Agent Diagnostics] Error conditions",
+                "type": "lens"
+            },
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-da9d724b-bce2-47bb-aa6d-de14035795ef",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "6ebee42c-d5c0-4aee-a08a-081a8935ada9",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "da9d724b-bce2-47bb-aa6d-de14035795ef": {
+                                            "columnOrder": [
+                                                "32b53309-6c62-4317-a3d3-e0e63dffc211",
+                                                "3a837f3f-cdeb-4c73-9a55-5bbfeb71afba",
+                                                "fd43c601-374f-4bb2-a31f-25d05b9359aa"
+                                            ],
+                                            "columns": {
+                                                "32b53309-6c62-4317-a3d3-e0e63dffc211": {
+                                                    "dataType": "string",
+                                                    "isBucketed": true,
+                                                    "label": "Top 10 values of component.id",
+                                                    "operationType": "terms",
+                                                    "params": {
+                                                        "exclude": [],
+                                                        "excludeIsRegex": false,
+                                                        "include": [],
+                                                        "includeIsRegex": false,
+                                                        "missingBucket": false,
+                                                        "orderBy": {
+                                                            "columnId": "fd43c601-374f-4bb2-a31f-25d05b9359aa",
+                                                            "type": "column"
+                                                        },
+                                                        "orderDirection": "desc",
+                                                        "otherBucket": true,
+                                                        "parentFormat": {
+                                                            "id": "terms"
+                                                        },
+                                                        "size": 10
+                                                    },
+                                                    "scale": "ordinal",
+                                                    "sourceField": "component.id"
+                                                },
+                                                "3a837f3f-cdeb-4c73-9a55-5bbfeb71afba": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                },
+                                                "fd43c601-374f-4bb2-a31f-25d05b9359aa": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Batch Size",
+                                                    "operationType": "average",
+                                                    "params": {
+                                                        "emptyAsNull": true
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.pipeline.events.active"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "6ebee42c-d5c0-4aee-a08a-081a8935ada9",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "fd43c601-374f-4bb2-a31f-25d05b9359aa"
+                                        ],
+                                        "layerId": "da9d724b-bce2-47bb-aa6d-de14035795ef",
+                                        "layerType": "data",
+                                        "position": "top",
+                                        "seriesType": "line",
+                                        "showGridlines": false,
+                                        "splitAccessor": "32b53309-6c62-4317-a3d3-e0e63dffc211",
+                                        "xAccessor": "3a837f3f-cdeb-4c73-9a55-5bbfeb71afba",
+                                        "yConfig": [
+                                            {
+                                                "forAccessor": "fd43c601-374f-4bb2-a31f-25d05b9359aa"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "line",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "description": "If this is consistently near the queue size (default 4096) then the inputs are producing events faster than the output can write them.",
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "299142e1-616b-40b4-b761-3d7c828aab94",
+                    "w": 24,
+                    "x": 24,
+                    "y": 15
+                },
+                "panelIndex": "299142e1-616b-40b4-b761-3d7c828aab94",
+                "title": "[Elastic Agent Diagnostics] Queue depth",
+                "type": "lens"
+            },
+            {
+                "embeddableConfig": {
+                    "attributes": {
+                        "description": "",
+                        "references": [
+                            {
+                                "id": "logs-*",
+                                "name": "indexpattern-datasource-layer-7c21510a-4b19-4285-a1af-3d5dd4e5ff92",
+                                "type": "index-pattern"
+                            },
+                            {
+                                "id": "logs-*",
+                                "name": "a08469c7-ef09-4094-a146-11dd95ec32b2",
+                                "type": "index-pattern"
+                            }
+                        ],
+                        "state": {
+                            "adHocDataViews": {},
+                            "datasourceStates": {
+                                "formBased": {
+                                    "layers": {
+                                        "7c21510a-4b19-4285-a1af-3d5dd4e5ff92": {
+                                            "columnOrder": [
+                                                "3bef4444-075b-49f2-ab2a-74d7b520242e",
+                                                "ed5f3ee4-4be8-4f9d-ae95-c9d0440933d7",
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73",
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X0",
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X2",
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X1"
+                                            ],
+                                            "columns": {
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "events per batch",
+                                                    "operationType": "formula",
+                                                    "params": {
+                                                        "formula": "sum(monitoring.metrics.libbeat.output.events.total) / sum(monitoring.metrics.libbeat.output.events.batches)",
+                                                        "isFormulaBroken": false
+                                                    },
+                                                    "references": [
+                                                        "2787c39e-92f5-4f91-88f9-16a23856dd73X2"
+                                                    ],
+                                                    "scale": "ratio"
+                                                },
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X0": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of sum(monitoring.metrics.libbeat.output.events.total) / sum(monitoring.metrics.libbeat.output.events.batches)",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": false
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.total"
+                                                },
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X1": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of sum(monitoring.metrics.libbeat.output.events.total) / sum(monitoring.metrics.libbeat.output.events.batches)",
+                                                    "operationType": "sum",
+                                                    "params": {
+                                                        "emptyAsNull": false
+                                                    },
+                                                    "scale": "ratio",
+                                                    "sourceField": "monitoring.metrics.libbeat.output.events.batches"
+                                                },
+                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X2": {
+                                                    "customLabel": true,
+                                                    "dataType": "number",
+                                                    "isBucketed": false,
+                                                    "label": "Part of sum(monitoring.metrics.libbeat.output.events.total) / sum(monitoring.metrics.libbeat.output.events.batches)",
+                                                    "operationType": "math",
+                                                    "params": {
+                                                        "tinymathAst": {
+                                                            "args": [
+                                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X0",
+                                                                "2787c39e-92f5-4f91-88f9-16a23856dd73X1"
+                                                            ],
+                                                            "location": {
+                                                                "max": 107,
+                                                                "min": 0
+                                                            },
+                                                            "name": "divide",
+                                                            "text": "sum(monitoring.metrics.libbeat.output.events.total) / sum(monitoring.metrics.libbeat.output.events.batches)",
+                                                            "type": "function"
+                                                        }
+                                                    },
+                                                    "references": [
+                                                        "2787c39e-92f5-4f91-88f9-16a23856dd73X0",
+                                                        "2787c39e-92f5-4f91-88f9-16a23856dd73X1"
+                                                    ],
+                                                    "scale": "ratio"
+                                                },
+                                                "3bef4444-075b-49f2-ab2a-74d7b520242e": {
+                                                    "dataType": "string",
+                                                    "isBucketed": true,
+                                                    "label": "Top 10 values of component.id",
+                                                    "operationType": "terms",
+                                                    "params": {
+                                                        "exclude": [],
+                                                        "excludeIsRegex": false,
+                                                        "include": [],
+                                                        "includeIsRegex": false,
+                                                        "missingBucket": false,
+                                                        "orderBy": {
+                                                            "fallback": true,
+                                                            "type": "alphabetical"
+                                                        },
+                                                        "orderDirection": "asc",
+                                                        "otherBucket": true,
+                                                        "parentFormat": {
+                                                            "id": "terms"
+                                                        },
+                                                        "size": 10
+                                                    },
+                                                    "scale": "ordinal",
+                                                    "sourceField": "component.id"
+                                                },
+                                                "ed5f3ee4-4be8-4f9d-ae95-c9d0440933d7": {
+                                                    "dataType": "date",
+                                                    "isBucketed": true,
+                                                    "label": "@timestamp",
+                                                    "operationType": "date_histogram",
+                                                    "params": {
+                                                        "dropPartials": false,
+                                                        "includeEmptyRows": true,
+                                                        "interval": "auto"
+                                                    },
+                                                    "scale": "interval",
+                                                    "sourceField": "@timestamp"
+                                                }
+                                            },
+                                            "incompleteColumns": {},
+                                            "sampling": 1
+                                        }
+                                    }
+                                },
+                                "indexpattern": {
+                                    "layers": {}
+                                },
+                                "textBased": {
+                                    "layers": {}
+                                }
+                            },
+                            "filters": [
+                                {
+                                    "$state": {
+                                        "store": "appState"
+                                    },
+                                    "meta": {
+                                        "alias": null,
+                                        "disabled": false,
+                                        "index": "a08469c7-ef09-4094-a146-11dd95ec32b2",
+                                        "negate": false,
+                                        "params": [
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "data_stream.dataset",
+                                                    "index": "logs-*",
+                                                    "key": "data_stream.dataset",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "elastic_agent_diagnostics.logs"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "data_stream.dataset": "elastic_agent_diagnostics.logs"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "meta": {
+                                                    "alias": null,
+                                                    "disabled": false,
+                                                    "field": "message",
+                                                    "index": "logs-*",
+                                                    "key": "message",
+                                                    "negate": false,
+                                                    "params": {
+                                                        "query": "Non-zero metrics in the last 30s"
+                                                    },
+                                                    "type": "phrase"
+                                                },
+                                                "query": {
+                                                    "match_phrase": {
+                                                        "message": "Non-zero metrics in the last 30s"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relation": "AND",
+                                        "type": "combined"
+                                    },
+                                    "query": {}
+                                }
+                            ],
+                            "internalReferences": [],
+                            "query": {
+                                "language": "kuery",
+                                "query": ""
+                            },
+                            "visualization": {
+                                "axisTitlesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "fittingFunction": "None",
+                                "gridlinesVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "labelsOrientation": {
+                                    "x": 0,
+                                    "yLeft": 0,
+                                    "yRight": 0
+                                },
+                                "layers": [
+                                    {
+                                        "accessors": [
+                                            "2787c39e-92f5-4f91-88f9-16a23856dd73"
+                                        ],
+                                        "layerId": "7c21510a-4b19-4285-a1af-3d5dd4e5ff92",
+                                        "layerType": "data",
+                                        "position": "top",
+                                        "seriesType": "line",
+                                        "showGridlines": false,
+                                        "splitAccessor": "3bef4444-075b-49f2-ab2a-74d7b520242e",
+                                        "xAccessor": "ed5f3ee4-4be8-4f9d-ae95-c9d0440933d7",
+                                        "yConfig": [
+                                            {
+                                                "forAccessor": "2787c39e-92f5-4f91-88f9-16a23856dd73"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "legend": {
+                                    "isVisible": true,
+                                    "position": "right"
+                                },
+                                "preferredSeriesType": "line",
+                                "tickLabelsVisibilitySettings": {
+                                    "x": true,
+                                    "yLeft": true,
+                                    "yRight": true
+                                },
+                                "valueLabels": "hide"
+                            }
+                        },
+                        "title": "",
+                        "type": "lens",
+                        "visualizationType": "lnsXY"
+                    },
+                    "description": "For maximal through put this should be equivalent to bulk_max_size",
+                    "enhancements": {},
+                    "hidePanelTitles": false
+                },
+                "gridData": {
+                    "h": 15,
+                    "i": "52d55067-ee4c-4be2-859c-fdb68d5de450",
+                    "w": 24,
+                    "x": 24,
+                    "y": 30
+                },
+                "panelIndex": "52d55067-ee4c-4be2-859c-fdb68d5de450",
+                "title": "[Elastic Agent Diagnostics] Events per batch",
+                "type": "lens"
+            }
+        ],
+        "timeRestore": false,
+        "title": "[Elastic Agent Diagnostics] 30second Metrics",
+        "version": 1
+    },
+    "coreMigrationVersion": "8.8.0",
+    "created_at": "2024-01-05T23:28:02.811Z",
+    "id": "elastic_agent_diagnostics-74d90bc0-9aba-11ee-ae22-a7125448aafe",
+    "managed": false,
+    "references": [
+        {
+            "id": "logs-*",
+            "name": "d3c3c464-a1bb-46a2-8294-61ecec9b1a41:indexpattern-datasource-layer-79a6109f-4716-4d49-b124-71409206a385",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "d3c3c464-a1bb-46a2-8294-61ecec9b1a41:030ad0b2-8e0f-430e-8238-5d3794842d6c",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "5a24190f-87ea-48d3-9f5a-02f16bafcdc5:indexpattern-datasource-layer-ee8da478-9f7a-41b1-838b-362ce241ff08",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "5a24190f-87ea-48d3-9f5a-02f16bafcdc5:7d8ea7e4-9fd1-4171-8907-7fc07b411c2c",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "9ded9fb5-f300-4b51-9b7c-34df9df56108:indexpattern-datasource-layer-3bc7ca18-4add-4770-ab75-2c69aa7db11f",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "9ded9fb5-f300-4b51-9b7c-34df9df56108:f7c8bd22-b2d1-4135-89fd-395a8ba1433c",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "37050889-eff3-4490-9b0e-f647dadaea1c:indexpattern-datasource-layer-8331934b-8ebe-415f-b194-60c8fd6e6b5e",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "37050889-eff3-4490-9b0e-f647dadaea1c:bfbeb497-1d2b-4368-9c59-e190f1aee4ce",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "299142e1-616b-40b4-b761-3d7c828aab94:indexpattern-datasource-layer-da9d724b-bce2-47bb-aa6d-de14035795ef",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "299142e1-616b-40b4-b761-3d7c828aab94:6ebee42c-d5c0-4aee-a08a-081a8935ada9",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "52d55067-ee4c-4be2-859c-fdb68d5de450:indexpattern-datasource-layer-7c21510a-4b19-4285-a1af-3d5dd4e5ff92",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "52d55067-ee4c-4be2-859c-fdb68d5de450:a08469c7-ef09-4094-a146-11dd95ec32b2",
+            "type": "index-pattern"
+        },
+        {
+            "id": "logs-*",
+            "name": "controlGroup_c31d8784-d67b-4334-a65c-b1807c68355d:optionsListDataView",
+            "type": "index-pattern"
+        }
+    ],
+    "type": "dashboard",
+    "typeMigrationVersion": "8.9.0"
+}
